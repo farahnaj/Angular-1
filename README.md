@@ -19,7 +19,7 @@ Example Code
   - Range selector : To limit number of rows in table using limitTo filter.
   - Table : Displays student's details with applied filters like uppercase, date, number, currency.
 
-6. Code Content: 
+### 5. Code Content: 
 ```sh
   Angular1Filter
    |- css
