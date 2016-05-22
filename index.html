@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" ng-app='myModule'>
+  <head>
+    <meta charset="UTF-8">
+    <title>Angular JS Filters</title>
+    <script src="lib/angular.min.js"></script>
+    <script src="src/myApp.js"></script>
+    <script src="src/myGreetingController.js"></script>
+    <script src="src/myFilter.js"></script>
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <body>    
+    <h2>AngularJS Sample Application</h2>
+    <div ng-controller="greetingCtrl">
+      <h1>{{test}}</h1>
+      <h1>{{pageHeading | titleCase}}</h1>
+    </div>
+
+    <div ng-controller="myController">
+        Sort By :
+        <select ng-model="sortColumn">
+            <option value="name">Name ASC</option>
+            <option value="+dateOfBirth">Date of Birth ASC</option>
+            <option value="+gender">Gender ASC</option>
+            <option value="-scholorship">Scholorship DESC</option>
+        </select>
+        <br /><br />
+        Rows to display : <input type="number" step="1"
+                                 ng-model="rowCount" max="5" min="0" />
+        <br /><br />
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Scholorship</th>
+                    <th>Scholorship (number filter)</th>
+                    <th>Scholorship (currency filter)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="student in students |  limitTo:rowCount | orderBy:sortColumn">
+                    <td>
+                        {{ student.name | uppercase }}
+                    </td>
+                    <td>
+                        {{ student.dateOfBirth | date:"dd/MM/yyyy" }}
+                    </td>
+                    <td>
+                        {{ student.gender }}
+                    </td>
+                    <td>
+                        {{ student.scholorship  }}
+                    </td>
+                    <td>
+                        {{ student.scholorship | number:2 }}
+                    </td>
+                    <td>
+                        {{ student.scholorship |  currency : "$" : 1}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </body>
+</html>
